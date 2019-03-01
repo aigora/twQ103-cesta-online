@@ -1,6 +1,6 @@
-# Título del trabajo
+# **Cesta Online**
 
-Se pretende elaborar un programa  sobre **“una cesta de la compra online”**. Este permitirá a un usuario, previamente registrado, ser capaz de elegir entre distintos productos que serán almacenados por el programa y, al final, le mostrará al usuario el coste de su compra. Se dará la posibilidad de introducir códigos de descuento y de elegir el método de envío. Además, el programa tendrá que ser capaz de rechazar la compra cuando el usuario haya elegido un stock del producto mayor del disponible. **Título:** _Cesta Online_. 
+Se pretende elaborar un programa  sobre **“una cesta de la compra online”**. Este permitirá a un usuario, previamente registrado, ser capaz de elegir entre distintos productos que serán almacenados por el programa y, al final, le mostrará al usuario el coste de su compra. Se dará la posibilidad de introducir códigos de descuento y de elegir el método de envío. Además, el programa tendrá que ser capaz de rechazar la compra cuando el usuario haya elegido un stock del producto mayor del disponible.
 
 
 ## Integrantes del equipo
