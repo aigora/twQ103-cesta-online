@@ -5,10 +5,10 @@ Se pretende elaborar un programa  sobre **“una cesta de la compra online”**.
 
 ## Integrantes del equipo
 
-_Diego Gómez Garrido_      
+_Diego Gómez Garrido_        
 **Usuario:** Diego54632
 
-_Álvaro García del Monte_ 
+_Álvaro García del Monte_    
 **Usuario:** 8alvarogarcia
 
 _Mario Garrido Montero_    
