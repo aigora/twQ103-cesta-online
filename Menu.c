@@ -4,35 +4,49 @@
 */
 
 #include <stdio.h>
+#define NUM_MAX_USUARIOS 100
+
+struct persona{
+	char nombre[20];
+	int clave;
+}usuarios[NUM_MAX_USUARIOS];
+	
 
 int main()
 {
-	char opcion;
+	int opcion;
+	
+
+	int nusuarios = 0;
+	
 	printf("Menu en estado beta\n\n\n");
 	
 	
 	do
 	{
-		printf("MENU DE OPCIONES\n1-Registrarse\n2-Iniciar sesion\n3-Comprar productos\n4-Mirar tu cesta\n5-Finalizar compra\n6-Salir del menu\n\n");
+		printf("\nMENU DE OPCIONES\n1-Registrarse\n2-Iniciar sesion\n3-Salir de la pagina");
 		scanf("%i", &opcion);
 		switch(opcion)
 		{
 			case 1:
+				printf("introduce el usuario\n");
+				fflush(stdin);
+	            gets(persona1.nombre);
+	            
+				printf("introduce la clave\n");
+				scanf("%i",&persona1.clave);
+				
+				printf("\n su usuario es: %s",persona1.usuario);
+				printf("\n su clave es: %i",persona1.clave);
+					
+			
 			break;
 			
 			case 2:
 			break;
 			
+			
 			case 3:
-			break;
-			
-			case 4:
-			break;
-			
-			case 5:
-			break;
-			
-			case 6:
 			printf("Esperamos volver a verte ;)\n");
 			break;
 			
@@ -40,7 +54,7 @@ int main()
 						
 		}
 	}
-	while(opcion!=6);
+	while(opcion!=3);
 	
 	
 	
@@ -60,4 +74,6 @@ int main()
 	
 	
 	return 0;
+	
 }
+
