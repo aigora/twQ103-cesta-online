@@ -32,7 +32,7 @@ int main()
 		{
 			printf("No es posible abrir el fichero.\n");
 		}
-		while (fscanf(fichero, "%s%i", usuarios[nusuarios].nombre, &usuarios[nusuarios].clave)!=EOF)
+		while (fscanf(fichero, "%s %i", usuarios[nusuarios].nombre, &usuarios[nusuarios].clave)!=EOF)
 		{
 			nusuarios++;
 		}
@@ -49,7 +49,7 @@ int main()
 				
 				printf("\n\nintroduce el nombre de usuario\n");
 				fflush(stdin);
-	            gets(usuarios[nusuarios].nombre);
+	            		gets(usuarios[nusuarios].nombre);
 	            
 				printf("introduce la clave\n");
 				scanf("%i",&usuarios[nusuarios].clave);
