@@ -17,7 +17,8 @@ int main()
 {
 	
 	int opcion;
-	int nusuarios = 0, i, x=0;
+	int nusuarios = 0, i;
+	int x=0; //x=exito o fracaso al iniciar sesion
 	char inicio_nombre[50];
 	int inicio_clave;
 	
@@ -63,36 +64,42 @@ int main()
 			break;
 			
 			case 2:
-				printf("\n\nintroduce el nombre de usuario\n");
-				fflush(stdin);
-	            gets(inicio_nombre);
-	            
-				printf("introduce la clave\n");
-				scanf("%i",&inicio_clave);
-				
-				for(i=0;i<nusuarios;i++)
+				do
 				{
-					/*printf("\n\n%s\n", inicio_nombre);
-					printf("%s\n\n\n", usuarios[i].nombre);
-					printf("%i\n", inicio_clave);
-					printf("%i\n", usuarios[i].clave);*/
+					printf("\n\nIntroduce el nombre de usuario\n");
+					fflush(stdin);
+		           		gets(inicio_nombre);
+		            
+					printf("introduce la clave\n");
+					scanf("%i",&inicio_clave);
 					
-					if(0==strcmp(inicio_nombre,usuarios[i].nombre)&&inicio_clave==usuarios[i].clave)
+					for(i=0;i<nusuarios;i++)
 					{
-						//printf("okeeeyy\n");
-						x=1;
-						break;
+						/*printf("\n\n%s\n", inicio_nombre);
+						printf("%s\n\n\n", usuarios[i].nombre);
+						printf("%i\n", inicio_clave);
+						printf("%i\n", usuarios[i].clave);*/
+						
+						if(0==strcmp(inicio_nombre,usuarios[i].nombre)&&inicio_clave==usuarios[i].clave)
+						{
+							//printf("okeeeyy\n");
+							x=1;
+							break;
+						}
+						
+					}
+					if(x==1)
+					{
+						//printf("Puede inciar sesion\n");
+						
+					}
+					else//x=0
+					{
+						printf("Error al inciar sesion, intentelo de nuevo\n");
 					}
 					
-				}
-				if(x!=0)//x==1
-				{
-					printf("Puede inciar sesion\n");
-				}
-				else//x=0
-				{
-					printf("Error al inciar sesion\n");
-				}
+				}while(x!=1);
+				
 				
 			break;
 			
