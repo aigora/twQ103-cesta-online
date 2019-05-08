@@ -1,0 +1,11 @@
+100 ZAPATILLAS 0
+1 Nike 100
+2 Reebok 90
+3 Adidas 110
+4 NB 45
+5 Convers 50
+200 CAMISETAS 0
+6 Sprinfield 15
+7 Hollister 60
+8 Pull&Bear 25
+9 Jack&Jones 50
