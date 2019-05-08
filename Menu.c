@@ -301,7 +301,7 @@ int main()
 			
 			
 			case 3:
-			printf("Esperamos volver a verte ;)\n");
+			printf("Esperamos volver a verte\n");
 			break;
 			
 			default: printf("Error al introducir la opcion\n");
