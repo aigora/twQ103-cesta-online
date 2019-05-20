@@ -8,11 +8,14 @@
 #define NUM_MAX_PRODUCTOS 100
 
 void imprimirBanner();
+int menu1();
+int menu2();
+int menu3();
 
 struct persona
 {
 	char nombre[50];
-	int clave;
+	char clave[50];
 }usuarios[NUM_MAX_USUARIOS];
 	
 struct compra
@@ -31,11 +34,11 @@ struct codigo
 int main()
 {
 	system ("color 3F");
-	int opcion, n, precio_total;
+	int opcion1, opcion2, opcion3, n, precio_total;
 	int contador, nusuarios = 0, nproductos, npcesta, ndescuentos, i; // npcesta=nproductoscesta
 	int r, c, x=0; // r permite saber si el nombre al registrarse esta en uso,c verifica el codigo de decuento, x permite saber el exito o fracaso al iniciar sesion
 	char inicio_nombre[50], descuento[50];
-	int inicio_clave;
+	char inicio_clave[50];
 	char z[100]; // Esta cadena definira el nombre del fichero de un usuario en concreto y contendra su cesta propia
 	
 	imprimirBanner();
@@ -46,15 +49,14 @@ int main()
 		FILE *fichero;		
 		fichero = fopen("datos.txt", "r");			
 		
-		while (fscanf(fichero, "%s %i", usuarios[nusuarios].nombre, &usuarios[nusuarios].clave)!=EOF)
+		while (fscanf(fichero, "%s %s", usuarios[nusuarios].nombre, usuarios[nusuarios].clave)!=EOF)
 		{
 			nusuarios++;
 		}
 		fclose(fichero);
 				
-		printf("\nMENU DE OPCIONES\n1-Registrarse\n2-Iniciar sesion\n3-Salir de la pagina\n");
-		scanf("%i", &opcion);
-		switch(opcion)
+		opcion1=menu1();
+		switch(opcion1)
 		{
 			case 1:
 				
@@ -77,11 +79,12 @@ int main()
 				}while(r==1);
 	            
 				printf("introduce la clave\n");
-				scanf("%i",&usuarios[nusuarios].clave);
+				fflush(stdin);
+				gets(usuarios[nusuarios].clave);
 				
 				
 				fprintf(fichero,"%s ", usuarios[nusuarios].nombre);
-				fprintf(fichero,"%i\n", usuarios[nusuarios].clave);
+				fprintf(fichero,"%s\n", usuarios[nusuarios].clave);
 				
 				fclose(fichero);
 								
@@ -95,13 +98,14 @@ int main()
 		            gets(inicio_nombre);
 		            
 					printf("introduce la clave\n");
-					scanf("%i",&inicio_clave);
+					fflush(stdin);
+					gets(inicio_clave);
 					
 					//COMPRUEBO QUE COINCIDEN  EL NOMBRE Y CLAVE QUE INTRODUCE EL USUARIO CON LOS YA REGISTRADOS
 					for(i=0;i<nusuarios;i++)
 					{
 														
-						if(0==strcmp(inicio_nombre,usuarios[i].nombre)&&inicio_clave==usuarios[i].clave)
+						if(0==strcmp(inicio_nombre,usuarios[i].nombre)&&0==strcmp(inicio_clave,usuarios[i].clave))
 						{						
 							x=1;
 							break;
@@ -143,9 +147,8 @@ int main()
 							}
 							fclose(fichero);
 								
-							printf("\nGESTIONANDO SU COMPRA\n1-Comprar productos\n2-Ver tu cesta\n3-Finalizar compra\n");
-							scanf("%i", &opcion);
-							switch(opcion)
+							opcion2=menu2();
+							switch(opcion2)
 							{
 								case 1:
 								
@@ -208,10 +211,9 @@ int main()
 									
 								case 3:
 								do{
-									printf("Indique si cuenta con algun codigo de descuento\n1-SI\t2-NO\n");
-									scanf("%i", &opcion);
 									
-									switch (opcion){
+									opcion3=menu3();
+									switch (opcion3){
 										case 1:
 										fichero = fopen("descuentos.txt", "r");			
 										if(fichero==NULL)
@@ -237,27 +239,25 @@ int main()
 											}
 										}
 										
-										printf("Introduzca el codigo de descuento:\n");
-										fflush(stdin);
-										gets(descuento);
+										do{
+											printf("Introduzca el codigo de descuento:\n");
+											fflush(stdin);
+											gets(descuento);
+											
+											c=0, contador=0;
+											for(i=0;i<ndescuentos;i++)
+											{	
+												if(strcmp(descuento,descuentos[i].nombre)==0){
+													c=1;
+													break;
+												}																
+												contador++;
+											}
+										}while(c!=1);								
+				
+										printf("\n\nPRECIO A PAGAR: %.2f\n", precio_total*((float)descuentos[contador].precio/100));										
+										return 0;
 										
-										c=0, contador=0;
-										for(i=0;i<ndescuentos;i++)
-										{	
-											if(strcmp(descuento,descuentos[i].nombre)==0){
-												c=1;
-												break;
-											}																
-											contador++;
-										}
-										
-										if(c==0){
-											printf("\nSu codigo de descuento no coincide, intentelo de nuevo o indique\nque no cuenta con codigo de descuento\n");
-										}
-										else{
-											printf("\n\nPRECIO A PAGAR: %.2f\n", precio_total*((float)descuentos[contador].precio/100));
-											return 0;
-										}
 										
 										break;
 										
@@ -280,14 +280,14 @@ int main()
 										default: printf("Error al introducir la opcion\n");
 									}
 									
-								}while(opcion!=1&&opcion!=2);
+								}while(opcion3!=1&&opcion3!=2);
 								
 								break;
 								
 								default: printf("Error al introducir la opcion\n");
 							}
 						}
-						while(opcion!=3);
+						while(opcion2!=3);
 					}
 					
 					//NO COINCIDEN -> NO PUEDE INICIAR LA SESION
@@ -310,7 +310,7 @@ int main()
 						
 		}
 	}
-	while(opcion!=3);
+	while(opcion1!=3);
 	
 	
 	
@@ -325,3 +325,35 @@ void imprimirBanner()
 	printf(".................CESTA ONLINE................\n");	
 	printf(".............................................\n");
 }
+
+menu1(){
+	
+	int opcion;
+	
+	printf("\nMENU DE OPCIONES\n1-Registrarse\n2-Iniciar sesion\n3-Salir de la pagina\n");
+	scanf("%i", &opcion);
+	
+	return opcion;
+}
+
+menu2(){
+	
+	int opcion;
+	
+	printf("\nGESTIONANDO SU COMPRA\n1-Comprar productos\n2-Ver tu cesta\n3-Finalizar compra\n");
+	scanf("%i", &opcion);
+	
+	return opcion;
+}
+
+
+menu3(){
+	
+	int opcion;
+	
+	printf("Indique si cuenta con algun codigo de descuento\n1-SI\t2-NO\n");
+	scanf("%i", &opcion);
+	
+	return opcion;
+}
+
